@@ -20,6 +20,8 @@
 #include <memory>
 #include <string>
 
+namespace autoware
+{
 namespace behavior_path_planner
 {
 AvoidanceByLaneChangeInterface::AvoidanceByLaneChangeInterface(
@@ -64,3 +66,4 @@ void AvoidanceByLaneChangeInterface::updateRTCStatus(
     clock_->now());
 }
 }  // namespace behavior_path_planner
+}  // namespace autoware
