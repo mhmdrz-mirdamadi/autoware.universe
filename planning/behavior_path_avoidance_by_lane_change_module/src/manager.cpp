@@ -29,7 +29,6 @@ namespace autoware
 {
 namespace behavior_path_planner
 {
-
 void AvoidanceByLaneChangeModuleManager::init(rclcpp::Node * node)
 {
   using autoware_auto_perception_msgs::msg::ObjectClassification;
@@ -41,7 +40,7 @@ void AvoidanceByLaneChangeModuleManager::init(rclcpp::Node * node)
   // init lane change manager
   LaneChangeModuleManager::initParams(node);
 
-  const auto avoidance_params = getParameter(node);
+  const auto avoidance_params = ::behavior_path_planner::getParameter(node);
   AvoidanceByLCParameters p(avoidance_params);
 
   // unique parameters
@@ -199,4 +198,4 @@ AvoidanceByLaneChangeModuleManager::createNewSceneModuleInstance()
 #include <pluginlib/class_list_macros.hpp>
 PLUGINLIB_EXPORT_CLASS(
   autoware::behavior_path_planner::AvoidanceByLaneChangeModuleManager,
-  autoware::behavior_path_planner::SceneModuleManagerInterface)
+  ::behavior_path_planner::SceneModuleManagerInterface)

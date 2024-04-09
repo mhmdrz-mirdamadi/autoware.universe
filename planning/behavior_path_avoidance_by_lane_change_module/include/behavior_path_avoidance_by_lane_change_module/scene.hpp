@@ -25,10 +25,19 @@ namespace autoware
 {
 namespace behavior_path_planner
 {
+using ::route_handler::Direction;
+using ::behavior_path_planner::AvoidanceParameters;
 using AvoidanceDebugData = DebugData;
-using helper::avoidance::AvoidanceHelper;
+using ::behavior_path_planner::helper::avoidance::AvoidanceHelper;
+using ::behavior_path_planner::LaneChangeParameters;
+using ::behavior_path_planner::AvoidancePlanningData;
+using ::behavior_path_planner::ObjectDataArray;
+using ::behavior_path_planner::ObjectData;
+using ::behavior_path_planner::PredictedObject;
+using ::behavior_path_planner::LaneChangeModuleType;
+using ::behavior_path_planner::Point2d;
 
-class AvoidanceByLaneChange : public NormalLaneChange
+class AvoidanceByLaneChange : public ::behavior_path_planner::NormalLaneChange
 {
 public:
   AvoidanceByLaneChange(

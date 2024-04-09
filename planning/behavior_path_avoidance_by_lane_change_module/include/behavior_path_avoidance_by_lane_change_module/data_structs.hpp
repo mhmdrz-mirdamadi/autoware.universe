@@ -20,7 +20,9 @@ namespace autoware
 {
 namespace behavior_path_planner
 {
-struct AvoidanceByLCParameters : public AvoidanceParameters
+using ::behavior_path_planner::DebugData;
+
+struct AvoidanceByLCParameters : public ::behavior_path_planner::AvoidanceParameters
 {
   // execute only when the target object longitudinal distance is larger than this param.
   double execute_object_longitudinal_margin{0.0};

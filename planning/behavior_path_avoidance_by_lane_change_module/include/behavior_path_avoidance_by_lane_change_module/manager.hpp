@@ -30,7 +30,13 @@ namespace autoware
 {
 namespace behavior_path_planner
 {
-using route_handler::Direction;
+using ::route_handler::Direction;
+using ::behavior_path_planner::AvoidancePlanningData;
+using ::behavior_path_planner::LaneChangeModuleManager;
+using ::behavior_path_planner::LaneChangeModuleType;
+using ::behavior_path_planner::SceneModuleInterface;
+using ::behavior_path_planner::ObjectParameter;
+using ::behavior_path_planner::SceneModuleManagerInterface;
 
 class AvoidanceByLaneChangeModuleManager : public LaneChangeModuleManager
 {

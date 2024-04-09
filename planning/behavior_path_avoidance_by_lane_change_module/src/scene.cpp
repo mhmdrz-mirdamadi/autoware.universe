@@ -36,7 +36,7 @@ namespace autoware
 {
 namespace behavior_path_planner
 {
-using autoware::behavior_path_planner::utils::lane_change::debug::createExecutionArea;
+using ::behavior_path_planner::utils::lane_change::debug::createExecutionArea;
 
 AvoidanceByLaneChange::AvoidanceByLaneChange(
   const std::shared_ptr<LaneChangeParameters> & parameters,
@@ -62,7 +62,7 @@ bool AvoidanceByLaneChange::specialRequiredCheck() const
     const auto & objects = avoidance_data_.target_objects;
 
     const auto is_avoidance_target = [&p](const auto & object) {
-      const auto target_class = utils::getHighestProbLabel(object.object.classification) == p.first;
+      const auto target_class = ::behavior_path_planner::utils::getHighestProbLabel(object.object.classification) == p.first;
       return target_class && object.avoid_required;
     };
 
@@ -105,13 +105,13 @@ void AvoidanceByLaneChange::updateSpecialData()
   if (avoidance_data_.target_objects.empty()) {
     direction_ = Direction::NONE;
   } else {
-    direction_ = utils::avoidance::isOnRight(avoidance_data_.target_objects.front())
+    direction_ = ::behavior_path_planner::utils::avoidance::isOnRight(avoidance_data_.target_objects.front())
                    ? Direction::LEFT
                    : Direction::RIGHT;
   }
 
-  utils::avoidance::updateRegisteredObject(registered_objects_, avoidance_data_.target_objects, p);
-  utils::avoidance::compensateDetectionLost(
+  ::behavior_path_planner::utils::avoidance::updateRegisteredObject(registered_objects_, avoidance_data_.target_objects, p);
+  ::behavior_path_planner::utils::avoidance::compensateDetectionLost(
     registered_objects_, avoidance_data_.target_objects, avoidance_data_.other_objects);
 
   std::sort(
@@ -130,7 +130,7 @@ AvoidancePlanningData AvoidanceByLaneChange::calcAvoidancePlanningData(
   data.reference_path_rough = prev_module_output_.path;
 
   const auto resample_interval = avoidance_parameters_->resample_interval_for_planning;
-  data.reference_path = utils::resamplePathWithSpline(data.reference_path_rough, resample_interval);
+  data.reference_path = ::behavior_path_planner::utils::resamplePathWithSpline(data.reference_path_rough, resample_interval);
 
   data.current_lanelets = getCurrentLanes();
 
@@ -145,10 +145,10 @@ void AvoidanceByLaneChange::fillAvoidanceTargetObjects(
   const auto p = std::dynamic_pointer_cast<AvoidanceParameters>(avoidance_parameters_);
 
   const auto [object_within_target_lane, object_outside_target_lane] =
-    utils::path_safety_checker::separateObjectsByLanelets(
+    ::behavior_path_planner::utils::path_safety_checker::separateObjectsByLanelets(
       *planner_data_->dynamic_object, data.current_lanelets,
       [](const auto & obj, const auto & lane) {
-        return utils::path_safety_checker::isPolygonOverlapLanelet(obj, lane);
+      return ::behavior_path_planner::utils::path_safety_checker::isPolygonOverlapLanelet(obj, lane);
       });
 
   // Assume that the maximum allocation for data.other object is the sum of
@@ -201,7 +201,7 @@ std::optional<ObjectData> AvoidanceByLaneChange::createObjectData(
   const auto & object_pose = object.kinematics.initial_pose_with_covariance.pose;
   const auto object_closest_index = findNearestIndex(path_points, object_pose.position);
   const auto object_closest_pose = path_points.at(object_closest_index).point.pose;
-  const auto t = utils::getHighestProbLabel(object.classification);
+  const auto t = ::behavior_path_planner::utils::getHighestProbLabel(object.classification);
   const auto & object_parameter = avoidance_parameters_->object_parameters.at(t);
 
   ObjectData object_data{};
@@ -224,14 +224,14 @@ std::optional<ObjectData> AvoidanceByLaneChange::createObjectData(
   object_data.distance_factor = object_parameter.max_expand_ratio * clamp + 1.0;
 
   // Calc envelop polygon.
-  utils::avoidance::fillObjectEnvelopePolygon(
+  ::behavior_path_planner::utils::avoidance::fillObjectEnvelopePolygon(
     object_data, registered_objects_, object_closest_pose, p);
 
   // calc object centroid.
   object_data.centroid = return_centroid<Point2d>(object_data.envelope_poly);
 
   // Calc moving time.
-  utils::avoidance::fillObjectMovingTime(object_data, stopped_objects_, p);
+  ::behavior_path_planner::utils::avoidance::fillObjectMovingTime(object_data, stopped_objects_, p);
 
   object_data.direction = calcLateralDeviation(object_closest_pose, object_pose.position) > 0.0
                             ? Direction::LEFT
@@ -239,13 +239,13 @@ std::optional<ObjectData> AvoidanceByLaneChange::createObjectData(
 
   // Find the footprint point closest to the path, set to object_data.overhang_distance.
   object_data.overhang_points =
-    utils::avoidance::calcEnvelopeOverhangDistance(object_data, data.reference_path);
+    ::behavior_path_planner::utils::avoidance::calcEnvelopeOverhangDistance(object_data, data.reference_path);
 
   // Check whether the the ego should avoid the object.
   const auto & vehicle_width = planner_data_->parameters.vehicle_width;
-  utils::avoidance::fillAvoidanceNecessity(object_data, registered_objects_, vehicle_width, p);
+  ::behavior_path_planner::utils::avoidance::fillAvoidanceNecessity(object_data, registered_objects_, vehicle_width, p);
 
-  utils::avoidance::fillLongitudinalAndLengthByClosestEnvelopeFootprint(
+  ::behavior_path_planner::utils::avoidance::fillLongitudinalAndLengthByClosestEnvelopeFootprint(
     data.reference_path_rough, getEgoPosition(), object_data);
   return object_data;
 }
@@ -253,7 +253,7 @@ std::optional<ObjectData> AvoidanceByLaneChange::createObjectData(
 double AvoidanceByLaneChange::calcMinAvoidanceLength(const ObjectData & nearest_object) const
 {
   const auto ego_width = getCommonParam().vehicle_width;
-  const auto nearest_object_type = utils::getHighestProbLabel(nearest_object.object.classification);
+  const auto nearest_object_type = ::behavior_path_planner::utils::getHighestProbLabel(nearest_object.object.classification);
   const auto nearest_object_parameter =
     avoidance_parameters_->object_parameters.at(nearest_object_type);
   const auto lateral_hard_margin = std::max(
@@ -264,7 +264,7 @@ double AvoidanceByLaneChange::calcMinAvoidanceLength(const ObjectData & nearest_
 
   avoidance_helper_->setData(planner_data_);
   const auto shift_length = avoidance_helper_->getShiftLength(
-    nearest_object, utils::avoidance::isOnRight(nearest_object), avoid_margin);
+    nearest_object, ::behavior_path_planner::utils::avoidance::isOnRight(nearest_object), avoid_margin);
 
   return avoidance_helper_->getMinAvoidanceDistance(shift_length);
 }
@@ -277,7 +277,7 @@ double AvoidanceByLaneChange::calcMinimumLaneChangeLength() const
     return std::numeric_limits<double>::infinity();
   }
 
-  return utils::lane_change::calcMinimumLaneChangeLength(
+  return ::behavior_path_planner::utils::lane_change::calcMinimumLaneChangeLength(
     getRouteHandler(), current_lanes.back(), *lane_change_parameters_, direction_);
 }
 

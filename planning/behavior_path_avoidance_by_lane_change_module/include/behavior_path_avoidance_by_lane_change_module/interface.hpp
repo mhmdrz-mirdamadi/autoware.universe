@@ -29,6 +29,11 @@ namespace autoware
 {
 namespace behavior_path_planner
 {
+using ::behavior_path_planner::LaneChangeInterface;
+using ::behavior_path_planner::RTCInterface;
+using ::behavior_path_planner::ObjectsOfInterestMarkerInterface;
+using ::behavior_path_planner::Direction;
+
 class AvoidanceByLaneChangeInterface : public LaneChangeInterface
 {
 public:
