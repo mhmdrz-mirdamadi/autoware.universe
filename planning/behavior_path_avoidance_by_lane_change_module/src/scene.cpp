@@ -62,7 +62,8 @@ bool AvoidanceByLaneChange::specialRequiredCheck() const
     const auto & objects = avoidance_data_.target_objects;
 
     const auto is_avoidance_target = [&p](const auto & object) {
-      const auto target_class = ::behavior_path_planner::utils::getHighestProbLabel(object.object.classification) == p.first;
+      const auto target_class = ::behavior_path_planner::utils::getHighestProbLabel(
+                                  object.object.classification) == p.first;
       return target_class && object.avoid_required;
     };
 
@@ -105,12 +106,14 @@ void AvoidanceByLaneChange::updateSpecialData()
   if (avoidance_data_.target_objects.empty()) {
     direction_ = Direction::NONE;
   } else {
-    direction_ = ::behavior_path_planner::utils::avoidance::isOnRight(avoidance_data_.target_objects.front())
-                   ? Direction::LEFT
-                   : Direction::RIGHT;
+    direction_ =
+      ::behavior_path_planner::utils::avoidance::isOnRight(avoidance_data_.target_objects.front())
+        ? Direction::LEFT
+        : Direction::RIGHT;
   }
 
-  ::behavior_path_planner::utils::avoidance::updateRegisteredObject(registered_objects_, avoidance_data_.target_objects, p);
+  ::behavior_path_planner::utils::avoidance::updateRegisteredObject(
+    registered_objects_, avoidance_data_.target_objects, p);
   ::behavior_path_planner::utils::avoidance::compensateDetectionLost(
     registered_objects_, avoidance_data_.target_objects, avoidance_data_.other_objects);
 
@@ -130,7 +133,8 @@ AvoidancePlanningData AvoidanceByLaneChange::calcAvoidancePlanningData(
   data.reference_path_rough = prev_module_output_.path;
 
   const auto resample_interval = avoidance_parameters_->resample_interval_for_planning;
-  data.reference_path = ::behavior_path_planner::utils::resamplePathWithSpline(data.reference_path_rough, resample_interval);
+  data.reference_path = ::behavior_path_planner::utils::resamplePathWithSpline(
+    data.reference_path_rough, resample_interval);
 
   data.current_lanelets = getCurrentLanes();
 
@@ -239,11 +243,13 @@ std::optional<ObjectData> AvoidanceByLaneChange::createObjectData(
 
   // Find the footprint point closest to the path, set to object_data.overhang_distance.
   object_data.overhang_points =
-    ::behavior_path_planner::utils::avoidance::calcEnvelopeOverhangDistance(object_data, data.reference_path);
+    ::behavior_path_planner::utils::avoidance::calcEnvelopeOverhangDistance(
+      object_data, data.reference_path);
 
   // Check whether the the ego should avoid the object.
   const auto & vehicle_width = planner_data_->parameters.vehicle_width;
-  ::behavior_path_planner::utils::avoidance::fillAvoidanceNecessity(object_data, registered_objects_, vehicle_width, p);
+  ::behavior_path_planner::utils::avoidance::fillAvoidanceNecessity(
+    object_data, registered_objects_, vehicle_width, p);
 
   ::behavior_path_planner::utils::avoidance::fillLongitudinalAndLengthByClosestEnvelopeFootprint(
     data.reference_path_rough, getEgoPosition(), object_data);
@@ -253,7 +259,8 @@ std::optional<ObjectData> AvoidanceByLaneChange::createObjectData(
 double AvoidanceByLaneChange::calcMinAvoidanceLength(const ObjectData & nearest_object) const
 {
   const auto ego_width = getCommonParam().vehicle_width;
-  const auto nearest_object_type = ::behavior_path_planner::utils::getHighestProbLabel(nearest_object.object.classification);
+  const auto nearest_object_type =
+    ::behavior_path_planner::utils::getHighestProbLabel(nearest_object.object.classification);
   const auto nearest_object_parameter =
     avoidance_parameters_->object_parameters.at(nearest_object_type);
   const auto lateral_hard_margin = std::max(
@@ -264,7 +271,8 @@ double AvoidanceByLaneChange::calcMinAvoidanceLength(const ObjectData & nearest_
 
   avoidance_helper_->setData(planner_data_);
   const auto shift_length = avoidance_helper_->getShiftLength(
-    nearest_object, ::behavior_path_planner::utils::avoidance::isOnRight(nearest_object), avoid_margin);
+    nearest_object, ::behavior_path_planner::utils::avoidance::isOnRight(nearest_object),
+    avoid_margin);
 
   return avoidance_helper_->getMinAvoidanceDistance(shift_length);
 }
