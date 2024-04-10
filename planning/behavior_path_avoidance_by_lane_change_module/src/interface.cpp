@@ -63,4 +63,4 @@ void AvoidanceByLaneChangeInterface::updateRTCStatus(
     uuid_map_.at(direction), isExecutionReady(), state, start_distance, finish_distance,
     clock_->now());
 }
-}  // namespace autoware
+}  // namespace autoware::behavior_path_planner

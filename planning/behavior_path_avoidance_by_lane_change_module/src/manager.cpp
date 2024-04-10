@@ -190,7 +190,7 @@ AvoidanceByLaneChangeModuleManager::createNewSceneModuleInstance()
     objects_of_interest_marker_interface_ptr_map_);
 }
 
-}  // namespace autoware
+}  // namespace autoware::behavior_path_planner
 
 #include <pluginlib/class_list_macros.hpp>
 PLUGINLIB_EXPORT_CLASS(
