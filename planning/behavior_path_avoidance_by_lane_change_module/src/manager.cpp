@@ -25,9 +25,7 @@
 #include <string>
 #include <vector>
 
-namespace autoware
-{
-namespace behavior_path_planner
+namespace autoware::behavior_path_planner
 {
 void AvoidanceByLaneChangeModuleManager::init(rclcpp::Node * node)
 {
@@ -192,7 +190,6 @@ AvoidanceByLaneChangeModuleManager::createNewSceneModuleInstance()
     objects_of_interest_marker_interface_ptr_map_);
 }
 
-}  // namespace behavior_path_planner
 }  // namespace autoware
 
 #include <pluginlib/class_list_macros.hpp>

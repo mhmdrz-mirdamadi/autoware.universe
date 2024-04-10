@@ -20,9 +20,7 @@
 #include <memory>
 #include <string>
 
-namespace autoware
-{
-namespace behavior_path_planner
+namespace autoware::behavior_path_planner
 {
 AvoidanceByLaneChangeInterface::AvoidanceByLaneChangeInterface(
   const std::string & name, rclcpp::Node & node,
@@ -65,5 +63,4 @@ void AvoidanceByLaneChangeInterface::updateRTCStatus(
     uuid_map_.at(direction), isExecutionReady(), state, start_distance, finish_distance,
     clock_->now());
 }
-}  // namespace behavior_path_planner
 }  // namespace autoware
