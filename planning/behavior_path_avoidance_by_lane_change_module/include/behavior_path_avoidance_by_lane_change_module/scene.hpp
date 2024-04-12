@@ -27,11 +27,11 @@ using ::behavior_path_planner::DebugData;
 using AvoidanceDebugData = DebugData;
 using ::behavior_path_planner::AvoidancePlanningData;
 using ::behavior_path_planner::LaneChangeParameters;
+using ::behavior_path_planner::NormalLaneChange;
 using ::behavior_path_planner::ObjectData;
 using ::behavior_path_planner::ObjectDataArray;
 using ::behavior_path_planner::PredictedObject;
 using ::behavior_path_planner::helper::avoidance::AvoidanceHelper;
-using ::behavior_path_planner::NormalLaneChange;
 
 class AvoidanceByLaneChange : public NormalLaneChange
 {
@@ -60,12 +60,13 @@ private:
   std::optional<ObjectData> create_object_data(
     const AvoidancePlanningData & data, const PredictedObject & object) const;
 
-  void fill_avoidance_target_objects(AvoidancePlanningData & data, AvoidanceDebugData & debug) const;
+  void fill_avoidance_target_objects(
+    AvoidancePlanningData & data, AvoidanceDebugData & debug) const;
 
   double calc_min_avoidance_length(const ObjectData & nearest_object) const;
   double calc_minimum_lane_change_length() const;
   double calc_lateral_offset() const;
 };
-} // namespace autoware::behavior_path_planner
+}  // namespace autoware::behavior_path_planner
 
 #endif  // BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__SCENE_HPP_

@@ -49,6 +49,6 @@ public:
 protected:
   void updateRTCStatus(const double start_distance, const double finish_distance) override;
 };
-} // namespace autoware::behavior_path_planner
+}  // namespace autoware::behavior_path_planner
 
 #endif  // BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__INTERFACE_HPP_

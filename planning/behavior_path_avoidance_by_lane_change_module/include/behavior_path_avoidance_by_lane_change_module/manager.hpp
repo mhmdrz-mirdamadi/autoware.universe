@@ -49,6 +49,6 @@ public:
 private:
   std::shared_ptr<AvoidanceByLCParameters> avoidance_parameters_;
 };
-} // namespace autoware::behavior_path_planner
+}  // namespace autoware::behavior_path_planner
 
 #endif  // BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__MANAGER_HPP_
