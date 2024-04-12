@@ -35,6 +35,9 @@
 namespace autoware::behavior_path_planner
 {
 using ::behavior_path_planner::utils::lane_change::debug::createExecutionArea;
+using ::route_handler::Direction;
+using ::behavior_path_planner::LaneChangeModuleType;
+using ::behavior_path_planner::Point2d;
 
 AvoidanceByLaneChange::AvoidanceByLaneChange(
   const std::shared_ptr<LaneChangeParameters> & parameters,
@@ -76,12 +79,12 @@ bool AvoidanceByLaneChange::specialRequiredCheck() const
   }
 
   const auto & nearest_object = data.target_objects.front();
-  const auto minimum_avoid_length = calcMinAvoidanceLength(nearest_object);
-  const auto minimum_lane_change_length = calcMinimumLaneChangeLength();
+  const auto minimum_avoid_length = calc_min_avoidance_length(nearest_object);
+  const auto minimum_lane_change_length = calc_minimum_lane_change_length();
 
   lane_change_debug_.execution_area = createExecutionArea(
     getCommonParam().vehicle_info, getEgoPose(),
-    std::max(minimum_lane_change_length, minimum_avoid_length), calcLateralOffset());
+    std::max(minimum_lane_change_length, minimum_avoid_length), calc_lateral_offset());
 
   RCLCPP_DEBUG(
     logger_, "Conditions ? %f, %f, %f", nearest_object.longitudinal, minimum_lane_change_length,
@@ -99,7 +102,7 @@ void AvoidanceByLaneChange::updateSpecialData()
   const auto p = std::dynamic_pointer_cast<AvoidanceParameters>(avoidance_parameters_);
 
   avoidance_debug_data_ = DebugData();
-  avoidance_data_ = calcAvoidancePlanningData(avoidance_debug_data_);
+  avoidance_data_ = calc_avoidance_planning_data(avoidance_debug_data_);
 
   if (avoidance_data_.target_objects.empty()) {
     direction_ = Direction::NONE;
@@ -120,7 +123,7 @@ void AvoidanceByLaneChange::updateSpecialData()
     [](auto a, auto b) { return a.longitudinal < b.longitudinal; });
 }
 
-AvoidancePlanningData AvoidanceByLaneChange::calcAvoidancePlanningData(
+AvoidancePlanningData AvoidanceByLaneChange::calc_avoidance_planning_data(
   AvoidanceDebugData & debug) const
 {
   AvoidancePlanningData data;
@@ -136,12 +139,12 @@ AvoidancePlanningData AvoidanceByLaneChange::calcAvoidancePlanningData(
 
   data.current_lanelets = getCurrentLanes();
 
-  fillAvoidanceTargetObjects(data, debug);
+  fill_avoidance_target_objects(data, debug);
 
   return data;
 }
 
-void AvoidanceByLaneChange::fillAvoidanceTargetObjects(
+void AvoidanceByLaneChange::fill_avoidance_target_objects(
   AvoidancePlanningData & data, [[maybe_unused]] DebugData & debug) const
 {
   const auto p = std::dynamic_pointer_cast<AvoidanceParameters>(avoidance_parameters_);
@@ -178,7 +181,7 @@ void AvoidanceByLaneChange::fillAvoidanceTargetObjects(
   ObjectDataArray target_lane_objects;
   target_lane_objects.reserve(object_within_target_lane.objects.size());
   for (const auto & obj : object_within_target_lane.objects) {
-    const auto target_lane_object = createObjectData(data, obj);
+    const auto target_lane_object = create_object_data(data, obj);
     if (!target_lane_object) {
       continue;
     }
@@ -189,7 +192,7 @@ void AvoidanceByLaneChange::fillAvoidanceTargetObjects(
   data.target_objects = target_lane_objects;
 }
 
-std::optional<ObjectData> AvoidanceByLaneChange::createObjectData(
+std::optional<ObjectData> AvoidanceByLaneChange::create_object_data(
   const AvoidancePlanningData & data, const PredictedObject & object) const
 {
   using boost::geometry::return_centroid;
@@ -254,7 +257,7 @@ std::optional<ObjectData> AvoidanceByLaneChange::createObjectData(
   return object_data;
 }
 
-double AvoidanceByLaneChange::calcMinAvoidanceLength(const ObjectData & nearest_object) const
+double AvoidanceByLaneChange::calc_min_avoidance_length(const ObjectData & nearest_object) const
 {
   const auto ego_width = getCommonParam().vehicle_width;
   const auto nearest_object_type =
@@ -275,7 +278,7 @@ double AvoidanceByLaneChange::calcMinAvoidanceLength(const ObjectData & nearest_
   return avoidance_helper_->getMinAvoidanceDistance(shift_length);
 }
 
-double AvoidanceByLaneChange::calcMinimumLaneChangeLength() const
+double AvoidanceByLaneChange::calc_minimum_lane_change_length() const
 {
   const auto current_lanes = getCurrentLanes();
   if (current_lanes.empty()) {
@@ -287,7 +290,7 @@ double AvoidanceByLaneChange::calcMinimumLaneChangeLength() const
     getRouteHandler(), current_lanes.back(), *lane_change_parameters_, direction_);
 }
 
-double AvoidanceByLaneChange::calcLateralOffset() const
+double AvoidanceByLaneChange::calc_lateral_offset() const
 {
   auto additional_lat_offset{0.0};
   for (const auto & [type, p] : avoidance_parameters_->object_parameters) {

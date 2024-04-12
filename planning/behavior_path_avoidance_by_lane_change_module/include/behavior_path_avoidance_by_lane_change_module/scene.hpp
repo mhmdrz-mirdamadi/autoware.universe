@@ -21,28 +21,24 @@
 
 #include <memory>
 
-namespace autoware
+namespace autoware::behavior_path_planner
 {
-namespace behavior_path_planner
-{
-using ::behavior_path_planner::AvoidanceParameters;
-using ::route_handler::Direction;
+using ::behavior_path_planner::DebugData;
 using AvoidanceDebugData = DebugData;
 using ::behavior_path_planner::AvoidancePlanningData;
-using ::behavior_path_planner::LaneChangeModuleType;
 using ::behavior_path_planner::LaneChangeParameters;
 using ::behavior_path_planner::ObjectData;
 using ::behavior_path_planner::ObjectDataArray;
-using ::behavior_path_planner::Point2d;
 using ::behavior_path_planner::PredictedObject;
 using ::behavior_path_planner::helper::avoidance::AvoidanceHelper;
+using ::behavior_path_planner::NormalLaneChange;
 
-class AvoidanceByLaneChange : public ::behavior_path_planner::NormalLaneChange
+class AvoidanceByLaneChange : public NormalLaneChange
 {
 public:
   AvoidanceByLaneChange(
     const std::shared_ptr<LaneChangeParameters> & parameters,
-    std::shared_ptr<AvoidanceByLCParameters> avoidance_by_lane_change_parameters);
+    std::shared_ptr<AvoidanceByLCParameters> avoidance_parameters);
 
   bool specialRequiredCheck() const override;
 
@@ -53,7 +49,7 @@ public:
 private:
   std::shared_ptr<AvoidanceByLCParameters> avoidance_parameters_;
 
-  AvoidancePlanningData calcAvoidancePlanningData(AvoidanceDebugData & debug) const;
+  AvoidancePlanningData calc_avoidance_planning_data(AvoidanceDebugData & debug) const;
   AvoidancePlanningData avoidance_data_;
   mutable AvoidanceDebugData avoidance_debug_data_;
 
@@ -61,16 +57,15 @@ private:
   mutable ObjectDataArray stopped_objects_;
   std::shared_ptr<AvoidanceHelper> avoidance_helper_;
 
-  std::optional<ObjectData> createObjectData(
+  std::optional<ObjectData> create_object_data(
     const AvoidancePlanningData & data, const PredictedObject & object) const;
 
-  void fillAvoidanceTargetObjects(AvoidancePlanningData & data, AvoidanceDebugData & debug) const;
+  void fill_avoidance_target_objects(AvoidancePlanningData & data, AvoidanceDebugData & debug) const;
 
-  double calcMinAvoidanceLength(const ObjectData & nearest_object) const;
-  double calcMinimumLaneChangeLength() const;
-  double calcLateralOffset() const;
+  double calc_min_avoidance_length(const ObjectData & nearest_object) const;
+  double calc_minimum_lane_change_length() const;
+  double calc_lateral_offset() const;
 };
-}  // namespace behavior_path_planner
-}  // namespace autoware
+} // namespace autoware::behavior_path_planner
 
 #endif  // BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__SCENE_HPP_

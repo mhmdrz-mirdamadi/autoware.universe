@@ -22,6 +22,8 @@
 
 namespace autoware::behavior_path_planner
 {
+using ::route_handler::Direction;
+
 AvoidanceByLaneChangeInterface::AvoidanceByLaneChangeInterface(
   const std::string & name, rclcpp::Node & node,
   const std::shared_ptr<LaneChangeParameters> & parameters,

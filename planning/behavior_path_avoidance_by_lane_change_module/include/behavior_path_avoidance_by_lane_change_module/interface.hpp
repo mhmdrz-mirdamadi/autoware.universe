@@ -25,11 +25,8 @@
 #include <string>
 #include <unordered_map>
 
-namespace autoware
+namespace autoware::behavior_path_planner
 {
-namespace behavior_path_planner
-{
-using ::behavior_path_planner::Direction;
 using ::behavior_path_planner::LaneChangeInterface;
 using ::behavior_path_planner::ObjectsOfInterestMarkerInterface;
 using ::behavior_path_planner::RTCInterface;
@@ -52,7 +49,6 @@ public:
 protected:
   void updateRTCStatus(const double start_distance, const double finish_distance) override;
 };
-}  // namespace behavior_path_planner
-}  // namespace autoware
+} // namespace autoware::behavior_path_planner
 
 #endif  // BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__INTERFACE_HPP_

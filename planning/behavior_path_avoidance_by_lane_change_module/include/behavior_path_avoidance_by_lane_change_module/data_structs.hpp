@@ -16,13 +16,11 @@
 
 #include "behavior_path_avoidance_module/data_structs.hpp"
 
-namespace autoware
+namespace autoware::behavior_path_planner
 {
-namespace behavior_path_planner
-{
-using ::behavior_path_planner::DebugData;
+using ::behavior_path_planner::AvoidanceParameters;
 
-struct AvoidanceByLCParameters : public ::behavior_path_planner::AvoidanceParameters
+struct AvoidanceByLCParameters : public AvoidanceParameters
 {
   // execute only when the target object longitudinal distance is larger than this param.
   double execute_object_longitudinal_margin{0.0};
@@ -34,7 +32,6 @@ struct AvoidanceByLCParameters : public ::behavior_path_planner::AvoidanceParame
   {
   }
 };
-}  // namespace behavior_path_planner
-}  // namespace autoware
+} // namespace autoware::behavior_path_planner
 
 #endif  // BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__DATA_STRUCTS_HPP_

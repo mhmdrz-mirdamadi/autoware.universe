@@ -26,17 +26,11 @@
 #include <unordered_map>
 #include <vector>
 
-namespace autoware
+namespace autoware::behavior_path_planner
 {
-namespace behavior_path_planner
-{
-using ::behavior_path_planner::AvoidancePlanningData;
 using ::behavior_path_planner::LaneChangeModuleManager;
 using ::behavior_path_planner::LaneChangeModuleType;
-using ::behavior_path_planner::ObjectParameter;
 using ::behavior_path_planner::SceneModuleInterface;
-using ::behavior_path_planner::SceneModuleManagerInterface;
-using ::route_handler::Direction;
 
 class AvoidanceByLaneChangeModuleManager : public LaneChangeModuleManager
 {
@@ -55,7 +49,6 @@ public:
 private:
   std::shared_ptr<AvoidanceByLCParameters> avoidance_parameters_;
 };
-}  // namespace behavior_path_planner
-}  // namespace autoware
+} // namespace autoware::behavior_path_planner
 
 #endif  // BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__MANAGER_HPP_
