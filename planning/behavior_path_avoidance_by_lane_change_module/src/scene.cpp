@@ -139,12 +139,12 @@ AvoidancePlanningData AvoidanceByLaneChange::calcAvoidancePlanningData(
 
   data.current_lanelets = getCurrentLanes();
 
-  fill_avoidance_target_objects(data, debug);
+  fillAvoidanceTargetObjects(data, debug);
 
   return data;
 }
 
-void AvoidanceByLaneChange::fill_avoidance_target_objects(
+void AvoidanceByLaneChange::fillAvoidanceTargetObjects(
   AvoidancePlanningData & data, [[maybe_unused]] DebugData & debug) const
 {
   const auto p = std::dynamic_pointer_cast<AvoidanceParameters>(avoidance_parameters_);

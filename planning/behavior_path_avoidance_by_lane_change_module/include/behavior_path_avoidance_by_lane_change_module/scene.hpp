@@ -60,7 +60,7 @@ private:
   std::optional<ObjectData> createObjectData(
     const AvoidancePlanningData & data, const PredictedObject & object) const;
 
-  void fill_avoidance_target_objects(
+  void fillAvoidanceTargetObjects(
     AvoidancePlanningData & data, AvoidanceDebugData & debug) const;
 
   double calcMinAvoidanceLength(const ObjectData & nearest_object) const;
