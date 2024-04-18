@@ -49,7 +49,7 @@ public:
 private:
   std::shared_ptr<AvoidanceByLCParameters> avoidance_parameters_;
 
-  AvoidancePlanningData calc_avoidance_planning_data(AvoidanceDebugData & debug) const;
+  AvoidancePlanningData calcAvoidancePlanningData(AvoidanceDebugData & debug) const;
   AvoidancePlanningData avoidance_data_;
   mutable AvoidanceDebugData avoidance_debug_data_;
 
@@ -57,15 +57,15 @@ private:
   mutable ObjectDataArray stopped_objects_;
   std::shared_ptr<AvoidanceHelper> avoidance_helper_;
 
-  std::optional<ObjectData> create_object_data(
+  std::optional<ObjectData> createObjectData(
     const AvoidancePlanningData & data, const PredictedObject & object) const;
 
   void fill_avoidance_target_objects(
     AvoidancePlanningData & data, AvoidanceDebugData & debug) const;
 
-  double calc_min_avoidance_length(const ObjectData & nearest_object) const;
-  double calc_minimum_lane_change_length() const;
-  double calc_lateral_offset() const;
+  double calcMinAvoidanceLength(const ObjectData & nearest_object) const;
+  double calcMinimumLaneChangeLength() const;
+  double calcLateralOffset() const;
 };
 }  // namespace autoware::behavior_path_planner
 
