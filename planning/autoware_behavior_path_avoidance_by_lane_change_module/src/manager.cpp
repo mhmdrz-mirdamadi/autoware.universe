@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "behavior_path_avoidance_by_lane_change_module/manager.hpp"
+#include "manager.hpp"
 
-#include "behavior_path_avoidance_by_lane_change_module/data_structs.hpp"
+#include "data_structs.hpp"
 #include "behavior_path_avoidance_module/parameter_helper.hpp"
 #include "tier4_autoware_utils/ros/parameter.hpp"
 #include "tier4_autoware_utils/ros/update_param.hpp"
