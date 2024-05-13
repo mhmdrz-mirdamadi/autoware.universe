@@ -11,8 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#ifndef BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__DATA_STRUCTS_HPP_
-#define BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__DATA_STRUCTS_HPP_
+#ifndef DATA_STRUCTS_HPP_
+#define DATA_STRUCTS_HPP_
 
 #include "behavior_path_avoidance_module/data_structs.hpp"
 
@@ -34,4 +34,4 @@ struct AvoidanceByLCParameters : public AvoidanceParameters
 };
 }  // namespace autoware::behavior_path_planner
 
-#endif  // BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__DATA_STRUCTS_HPP_
+#endif  // DATA_STRUCTS_HPP_

@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__SCENE_HPP_
-#define BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__SCENE_HPP_
+#ifndef SCENE_HPP_
+#define SCENE_HPP_
 
-#include "data_structs.hpp"
 #include "behavior_path_avoidance_module/helper.hpp"
 #include "behavior_path_lane_change_module/scene.hpp"
+#include "data_structs.hpp"
 
 #include <memory>
 
@@ -68,4 +68,4 @@ private:
 };
 }  // namespace autoware::behavior_path_planner
 
-#endif  // BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__SCENE_HPP_
+#endif  // SCENE_HPP_

@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__MANAGER_HPP_
-#define BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__MANAGER_HPP_
+#ifndef MANAGER_HPP_
+#define MANAGER_HPP_
 
+#include "behavior_path_lane_change_module/manager.hpp"
 #include "data_structs.hpp"
 #include "interface.hpp"
-#include "behavior_path_lane_change_module/manager.hpp"
 
 #include <rclcpp/rclcpp.hpp>
 
@@ -51,4 +51,4 @@ private:
 };
 }  // namespace autoware::behavior_path_planner
 
-#endif  // BEHAVIOR_PATH_AVOIDANCE_BY_LANE_CHANGE_MODULE__MANAGER_HPP_
+#endif  // MANAGER_HPP_

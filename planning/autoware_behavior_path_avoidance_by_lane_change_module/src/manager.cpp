@@ -14,8 +14,8 @@
 
 #include "manager.hpp"
 
-#include "data_structs.hpp"
 #include "behavior_path_avoidance_module/parameter_helper.hpp"
+#include "data_structs.hpp"
 #include "tier4_autoware_utils/ros/parameter.hpp"
 #include "tier4_autoware_utils/ros/update_param.hpp"
 

@@ -153,7 +153,8 @@ void AvoidanceByLaneChange::fillAvoidanceTargetObjects(
     ::behavior_path_planner::utils::path_safety_checker::separateObjectsByLanelets(
       *planner_data_->dynamic_object, data.current_lanelets,
       [](const auto & obj, const auto & lane) {
-      return ::behavior_path_planner::utils::path_safety_checker::isPolygonOverlapLanelet(obj, lane);
+        return ::behavior_path_planner::utils::path_safety_checker::isPolygonOverlapLanelet(
+          obj, lane);
       });
 
   // Assume that the maximum allocation for data.other object is the sum of
