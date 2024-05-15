@@ -28,8 +28,8 @@
 #include <boost/geometry/algorithms/centroid.hpp>
 #include <boost/geometry/strategies/cartesian/centroid_bashein_detmer.hpp>
 
-#include <limits>
 #include <algorithm>
+#include <limits>
 #include <optional>
 #include <utility>
 
