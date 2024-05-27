@@ -22,6 +22,7 @@
 
 namespace autoware::behavior_path_planner
 {
+using ::behavior_path_planner::State;
 using ::route_handler::Direction;
 
 AvoidanceByLaneChangeInterface::AvoidanceByLaneChangeInterface(

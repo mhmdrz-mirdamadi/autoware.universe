@@ -36,6 +36,7 @@
 namespace autoware::behavior_path_planner
 {
 using ::behavior_path_planner::LaneChangeModuleType;
+using ::behavior_path_planner::ObjectInfo;
 using ::behavior_path_planner::Point2d;
 using ::behavior_path_planner::utils::lane_change::debug::createExecutionArea;
 using ::route_handler::Direction;
