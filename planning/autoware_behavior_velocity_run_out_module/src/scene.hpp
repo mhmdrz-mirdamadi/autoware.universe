@@ -39,11 +39,11 @@ using run_out_utils::PlannerParam;
 using run_out_utils::PoseWithRange;
 using tier4_debug_msgs::msg::Float32Stamped;
 using BasicPolygons2d = std::vector<lanelet::BasicPolygon2d>;
-using ::behavior_velocity_planner::SceneModuleInterface;
-using ::behavior_velocity_planner::PlannerData;
-using ::behavior_velocity_planner::StopReason;
 using ::behavior_velocity_planner::PathWithLaneId;
+using ::behavior_velocity_planner::PlannerData;
 using ::behavior_velocity_planner::Polygon2d;
+using ::behavior_velocity_planner::SceneModuleInterface;
+using ::behavior_velocity_planner::StopReason;
 
 class RunOutModule : public SceneModuleInterface
 {

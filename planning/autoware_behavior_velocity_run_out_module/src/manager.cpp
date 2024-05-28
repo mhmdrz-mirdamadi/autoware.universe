@@ -22,8 +22,8 @@
 
 namespace autoware::behavior_velocity_planner
 {
-using tier4_autoware_utils::getOrDeclareParameter;
 using ::behavior_velocity_planner::SceneModuleManagerInterface;
+using tier4_autoware_utils::getOrDeclareParameter;
 RunOutModuleManager::RunOutModuleManager(rclcpp::Node & node)
 : SceneModuleManagerInterface(node, getModuleName())
 {
@@ -204,4 +204,5 @@ void RunOutModuleManager::setDynamicObstacleCreator(
 
 #include <pluginlib/class_list_macros.hpp>
 PLUGINLIB_EXPORT_CLASS(
-  autoware::behavior_velocity_planner::RunOutModulePlugin, behavior_velocity_planner::PluginInterface)
+  autoware::behavior_velocity_planner::RunOutModulePlugin,
+  behavior_velocity_planner::PluginInterface)

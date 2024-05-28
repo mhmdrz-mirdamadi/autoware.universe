@@ -37,8 +37,8 @@
 namespace autoware::behavior_velocity_planner
 {
 namespace bg = boost::geometry;
-using object_recognition_utils::convertLabelToString;
 using ::behavior_velocity_planner::PlanningBehavior;
+using object_recognition_utils::convertLabelToString;
 namespace planning_utils = ::behavior_velocity_planner::planning_utils;
 using ::behavior_velocity_planner::getCrosswalksOnPath;
 using ::behavior_velocity_planner::Polygon2d;

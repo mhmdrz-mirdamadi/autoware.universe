@@ -35,8 +35,8 @@
 #include <tier4_autoware_utils/geometry/geometry.hpp>
 namespace autoware::behavior_velocity_planner
 {
-using ::behavior_velocity_planner::PathPointWithLaneId;
 using ::behavior_velocity_planner::DetectionRange;
+using ::behavior_velocity_planner::PathPointWithLaneId;
 namespace planning_utils = ::behavior_velocity_planner::planning_utils;
 namespace run_out_utils
 {

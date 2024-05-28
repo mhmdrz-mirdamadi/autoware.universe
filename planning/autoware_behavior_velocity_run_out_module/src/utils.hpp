@@ -39,14 +39,14 @@ using autoware_auto_perception_msgs::msg::PredictedObjects;
 using autoware_auto_perception_msgs::msg::Shape;
 using autoware_auto_planning_msgs::msg::PathPoint;
 using autoware_auto_planning_msgs::msg::PathWithLaneId;
+using ::behavior_velocity_planner::PlannerData;
+using ::behavior_velocity_planner::Polygons2d;
 using tier4_autoware_utils::Box2d;
 using tier4_autoware_utils::LineString2d;
 using tier4_autoware_utils::Point2d;
 using tier4_autoware_utils::Polygon2d;
 using tier4_debug_msgs::msg::Float32Stamped;
 using vehicle_info_util::VehicleInfo;
-using ::behavior_velocity_planner::Polygons2d;
-using ::behavior_velocity_planner::PlannerData;
 using PathPointsWithLaneId = std::vector<autoware_auto_planning_msgs::msg::PathPointWithLaneId>;
 struct CommonParam
 {
