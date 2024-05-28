@@ -68,7 +68,7 @@ std::shared_ptr<BehaviorVelocityPlannerNode> generateNode()
   module_names.emplace_back("behavior_velocity_planner::MergeFromPrivateModulePlugin");
   module_names.emplace_back("behavior_velocity_planner::BlindSpotModulePlugin");
   module_names.emplace_back("behavior_velocity_planner::DetectionAreaModulePlugin");
-  module_names.emplace_back("behavior_velocity_planner::VirtualTrafficLightModulePlugin");
+  module_names.emplace_back("autoware::behavior_velocity_planner::VirtualTrafficLightModulePlugin");
   module_names.emplace_back("behavior_velocity_planner::NoStoppingAreaModulePlugin");
   module_names.emplace_back("behavior_velocity_planner::StopLineModulePlugin");
   module_names.emplace_back("behavior_velocity_planner::OcclusionSpotModulePlugin");

@@ -30,8 +30,13 @@
 #include <string>
 #include <vector>
 
-namespace behavior_velocity_planner
+namespace autoware::behavior_velocity_planner
 {
+using ::behavior_velocity_planner::PathWithLaneId;
+using ::behavior_velocity_planner::StopReason;
+using ::behavior_velocity_planner::Pose;
+using ::behavior_velocity_planner::StopReason;
+using ::behavior_velocity_planner::SceneModuleInterface;
 class VirtualTrafficLightModule : public SceneModuleInterface
 {
 public:
@@ -126,5 +131,5 @@ private:
     autoware_auto_planning_msgs::msg::PathWithLaneId * path,
     tier4_planning_msgs::msg::StopReason * stop_reason, const size_t end_line_idx);
 };
-}  // namespace behavior_velocity_planner
+}  // namespace autoware::behavior_velocity_planner
 #endif  // SCENE_HPP_
