@@ -33,10 +33,10 @@
 
 namespace autoware::behavior_velocity_planner
 {
+using autoware_auto_planning_msgs::msg::PathWithLaneId;
 using ::behavior_velocity_planner::PluginWrapper;
 using ::behavior_velocity_planner::SceneModuleInterface;
 using ::behavior_velocity_planner::SceneModuleManagerInterface;
-using autoware_auto_planning_msgs::msg::PathWithLaneId;
 
 class WalkwayModuleManager : public SceneModuleManagerInterface
 {
