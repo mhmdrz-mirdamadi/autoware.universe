@@ -29,7 +29,7 @@
 
 #include <string>
 #include <vector>
-namespace behavior_velocity_planner
+namespace autoware::behavior_velocity_planner
 {
 namespace run_out_utils
 {
@@ -45,6 +45,8 @@ using tier4_autoware_utils::Point2d;
 using tier4_autoware_utils::Polygon2d;
 using tier4_debug_msgs::msg::Float32Stamped;
 using vehicle_info_util::VehicleInfo;
+using ::behavior_velocity_planner::Polygons2d;
+using ::behavior_velocity_planner::PlannerData;
 using PathPointsWithLaneId = std::vector<autoware_auto_planning_msgs::msg::PathPointWithLaneId>;
 struct CommonParam
 {
@@ -271,5 +273,5 @@ Polygons2d createMandatoryDetectionAreaPolygon(
   const PathWithLaneId & path, const PlannerData & planner_data,
   const PlannerParam & planner_param);
 }  // namespace run_out_utils
-}  // namespace behavior_velocity_planner
+}  // namespace autoware::behavior_velocity_planner
 #endif  // UTILS_HPP_

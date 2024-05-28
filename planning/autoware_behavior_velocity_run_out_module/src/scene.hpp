@@ -30,7 +30,7 @@
 #include <utility>
 #include <vector>
 
-namespace behavior_velocity_planner
+namespace autoware::behavior_velocity_planner
 {
 using autoware_auto_perception_msgs::msg::PredictedObjects;
 using autoware_auto_planning_msgs::msg::PathPointWithLaneId;
@@ -39,6 +39,11 @@ using run_out_utils::PlannerParam;
 using run_out_utils::PoseWithRange;
 using tier4_debug_msgs::msg::Float32Stamped;
 using BasicPolygons2d = std::vector<lanelet::BasicPolygon2d>;
+using ::behavior_velocity_planner::SceneModuleInterface;
+using ::behavior_velocity_planner::PlannerData;
+using ::behavior_velocity_planner::StopReason;
+using ::behavior_velocity_planner::PathWithLaneId;
+using ::behavior_velocity_planner::Polygon2d;
 
 class RunOutModule : public SceneModuleInterface
 {
@@ -177,6 +182,6 @@ private:
 
   bool isMomentaryDetection();
 };
-}  // namespace behavior_velocity_planner
+}  // namespace autoware::behavior_velocity_planner
 
 #endif  // SCENE_HPP_

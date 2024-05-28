@@ -23,8 +23,11 @@
 
 #include <memory>
 
-namespace behavior_velocity_planner
+namespace autoware::behavior_velocity_planner
 {
+using ::behavior_velocity_planner::SceneModuleInterface;
+using ::behavior_velocity_planner::SceneModuleManagerInterface;
+using ::behavior_velocity_planner::PluginWrapper;
 class RunOutModuleManager : public SceneModuleManagerInterface
 {
 public:
@@ -49,6 +52,6 @@ class RunOutModulePlugin : public PluginWrapper<RunOutModuleManager>
 {
 };
 
-}  // namespace behavior_velocity_planner
+}  // namespace autoware::behavior_velocity_planner
 
 #endif  // MANAGER_HPP_

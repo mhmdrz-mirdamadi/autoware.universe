@@ -72,7 +72,7 @@ std::shared_ptr<BehaviorVelocityPlannerNode> generateNode()
   module_names.emplace_back("behavior_velocity_planner::NoStoppingAreaModulePlugin");
   module_names.emplace_back("behavior_velocity_planner::StopLineModulePlugin");
   module_names.emplace_back("behavior_velocity_planner::OcclusionSpotModulePlugin");
-  module_names.emplace_back("behavior_velocity_planner::RunOutModulePlugin");
+  module_names.emplace_back("autoware::behavior_velocity_planner::RunOutModulePlugin");
   module_names.emplace_back("behavior_velocity_planner::SpeedBumpModulePlugin");
   module_names.emplace_back("behavior_velocity_planner::OutOfLaneModulePlugin");
   module_names.emplace_back("behavior_velocity_planner::NoDrivableLaneModulePlugin");
