@@ -62,7 +62,7 @@ std::shared_ptr<BehaviorVelocityPlannerNode> generateNode()
 
   std::vector<std::string> module_names;
   module_names.emplace_back("behavior_velocity_planner::CrosswalkModulePlugin");
-  module_names.emplace_back("behavior_velocity_planner::WalkwayModulePlugin");
+  module_names.emplace_back("autoware::behavior_velocity_planner::WalkwayModulePlugin");
   module_names.emplace_back("behavior_velocity_planner::TrafficLightModulePlugin");
   module_names.emplace_back("behavior_velocity_planner::IntersectionModulePlugin");
   module_names.emplace_back("behavior_velocity_planner::MergeFromPrivateModulePlugin");
