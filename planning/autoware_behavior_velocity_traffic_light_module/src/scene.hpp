@@ -31,8 +31,12 @@
 #include <lanelet2_core/LaneletMap.h>
 #include <lanelet2_routing/RoutingGraph.h>
 
-namespace behavior_velocity_planner
+namespace autoware::behavior_velocity_planner
 {
+using ::behavior_velocity_planner::PathWithLaneId;
+using ::behavior_velocity_planner::SceneModuleInterface;
+using ::behavior_velocity_planner::StopReason;
+using ::behavior_velocity_planner::TrafficSignalStamped;
 class TrafficLightModule : public SceneModuleInterface
 {
 public:
@@ -129,6 +133,6 @@ private:
   // Traffic Light State
   TrafficSignal looking_tl_state_;
 };
-}  // namespace behavior_velocity_planner
+}  // namespace autoware::behavior_velocity_planner
 
 #endif  // SCENE_HPP_

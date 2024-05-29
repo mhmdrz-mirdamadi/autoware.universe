@@ -34,9 +34,14 @@
 #include <string>
 #include <vector>
 
-namespace behavior_velocity_planner
+namespace autoware::behavior_velocity_planner
 {
 namespace bg = boost::geometry;
+using ::behavior_velocity_planner::LineString2d;
+using ::behavior_velocity_planner::PlanningBehavior;
+using ::behavior_velocity_planner::Point2d;
+using ::behavior_velocity_planner::VelocityFactor;
+namespace planning_utils = ::behavior_velocity_planner::planning_utils;
 
 namespace
 {
@@ -433,4 +438,4 @@ autoware_auto_planning_msgs::msg::PathWithLaneId TrafficLightModule::insertStopP
   return modified_path;
 }
 
-}  // namespace behavior_velocity_planner
+}  // namespace autoware::behavior_velocity_planner

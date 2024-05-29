@@ -24,10 +24,15 @@
 #include <set>
 #include <string>
 #include <utility>
-namespace behavior_velocity_planner
+namespace autoware::behavior_velocity_planner
 {
+using ::behavior_velocity_planner::PlanningBehavior;
+using ::behavior_velocity_planner::SceneModuleInterface;
+using ::behavior_velocity_planner::SceneModuleManagerInterfaceWithRTC;
+using ::behavior_velocity_planner::State;
 using lanelet::TrafficLight;
 using tier4_autoware_utils::getOrDeclareParameter;
+namespace planning_utils = ::behavior_velocity_planner::planning_utils;
 
 TrafficLightModuleManager::TrafficLightModuleManager(rclcpp::Node & node)
 : SceneModuleManagerInterfaceWithRTC(
@@ -189,8 +194,9 @@ bool TrafficLightModuleManager::hasSameTrafficLight(
   return false;
 }
 
-}  // namespace behavior_velocity_planner
+}  // namespace autoware::behavior_velocity_planner
 
 #include <pluginlib/class_list_macros.hpp>
 PLUGINLIB_EXPORT_CLASS(
-  behavior_velocity_planner::TrafficLightModulePlugin, behavior_velocity_planner::PluginInterface)
+  autoware::behavior_velocity_planner::TrafficLightModulePlugin,
+  behavior_velocity_planner::PluginInterface)

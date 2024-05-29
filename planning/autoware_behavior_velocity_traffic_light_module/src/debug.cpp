@@ -24,7 +24,7 @@
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 #endif
 
-namespace behavior_velocity_planner
+namespace autoware::behavior_velocity_planner
 {
 visualization_msgs::msg::MarkerArray TrafficLightModule::createDebugMarkerArray()
 {
@@ -54,4 +54,4 @@ motion_utils::VirtualWalls TrafficLightModule::createVirtualWalls()
   return virtual_walls;
 }
 
-}  // namespace behavior_velocity_planner
+}  // namespace autoware::behavior_velocity_planner

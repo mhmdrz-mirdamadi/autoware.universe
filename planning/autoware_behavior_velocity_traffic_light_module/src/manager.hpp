@@ -28,8 +28,11 @@
 #include <memory>
 #include <optional>
 
-namespace behavior_velocity_planner
+namespace autoware::behavior_velocity_planner
 {
+using ::behavior_velocity_planner::PluginWrapper;
+using ::behavior_velocity_planner::SceneModuleInterface;
+using ::behavior_velocity_planner::SceneModuleManagerInterfaceWithRTC;
 class TrafficLightModuleManager : public SceneModuleManagerInterfaceWithRTC
 {
 public:
@@ -65,6 +68,6 @@ class TrafficLightModulePlugin : public PluginWrapper<TrafficLightModuleManager>
 {
 };
 
-}  // namespace behavior_velocity_planner
+}  // namespace autoware::behavior_velocity_planner
 
 #endif  // MANAGER_HPP_
